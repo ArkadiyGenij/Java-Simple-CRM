@@ -5,6 +5,10 @@
         </button>
         <ul class="dropdown-menu">
             <li>
+                <a class="dropdown-item" th:href="@{/admin/user/list}" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                    <i class="fas fa-cog me-2"></i>
+                    Админпанель
+                </a>
                 <a class="dropdown-item" th:href="@{/profile}">
                     <i class="fas fa-user me-2"></i>
                     Личный кабинет</a>

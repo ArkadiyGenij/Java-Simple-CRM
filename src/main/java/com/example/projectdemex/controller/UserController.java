@@ -3,11 +3,13 @@ package com.example.projectdemex.controller;
 import com.example.projectdemex.impl.UserServiceImpl;
 import com.example.projectdemex.model.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@PreAuthorize("hasRole('ADMIN')")
 @RequestMapping("/admin/user")
 @RequiredArgsConstructor
 public class UserController {
