@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Пользователи</title>
-    <link rel='stylesheet' th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
-    <link rel='stylesheet' th:href="@{/webjars/font-awesome/6.5.2/css/all.min.css}">
-    <script th:src="@{webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
-</head>
+<div th:replace="~{fragments/head_fragment :: head(pageTitle='Пользователи')}"></div>
 <body>
 <div class="container-fluid">
     <div class="container">
@@ -21,11 +15,7 @@
                     <button type="reset" class="btn btn btn-primary">Очистить</button>
                 </form>
             </div>
-            <div class="col text-end">
-                <form method="post" th:action="@{/logout}">
-                    <input class="btn btn-danger" type="submit" value="Выход"/>
-                </form>
-            </div>
+            <div th:replace="~{fragments/profile_button_fragment :: profileButton}"></div>
         </div>
     </div>
     <br>

@@ -22,6 +22,7 @@ public class User extends AbstractUser {
     private String email;
     private String username;
     private String password;
+    private String filename;
     @CollectionTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"))
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)

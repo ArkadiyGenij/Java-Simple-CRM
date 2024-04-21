@@ -6,12 +6,18 @@ import com.example.projectdemex.model.User;
 import com.example.projectdemex.repo.UserRepo;
 import com.example.projectdemex.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +25,9 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
+
+    @Value("${upload.path}")
+    private String uploadPath;
 
 
     @Override
@@ -74,5 +83,27 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Long id) {
         this.userRepo.deleteById(id);
+    }
+
+    @Override
+    public void updateProfilePhoto(MultipartFile file, UserDetails userDetails) throws IOException {
+        if (file != null && !file.isEmpty()){
+            File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists()){
+                boolean isSuccessful = uploadDir.mkdir();
+                if (!isSuccessful) {
+                    throw new IOException("Ошибка при создании директории");
+                }
+            }
+            String originalFileName = file.getOriginalFilename();
+            if (originalFileName != null) {
+                String uuidFile = UUID.randomUUID().toString();
+                String newFileName = uuidFile + "." + originalFileName;
+                file.transferTo(new File(uploadPath + "/" + newFileName));
+                User user = userRepo.findByUsername(userDetails.getUsername());
+                user.setFilename(newFileName);
+                userRepo.save(user);
+            }
+        }
     }
 }
