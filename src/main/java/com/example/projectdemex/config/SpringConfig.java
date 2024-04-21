@@ -6,7 +6,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.thymeleaf.extras.springsecurity6.dialect.SpringSecurityDialect;
 
 @Configuration
 public class SpringConfig {
@@ -18,18 +17,18 @@ public class SpringConfig {
 
 
     @Bean
-    public SpringSecurityDialect securityDialect(){
-        return new SpringSecurityDialect();
-    }
-
-
-    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers(
                                 "/registration",
-                                "/webjars/**").permitAll()
+                                "/webjars/**",
+                                "/img/**",
+                                "/uploads/**",
+                                "/sw.js")
+                        .permitAll()
+                        .requestMatchers("/profile", "/updatePhoto")
+                        .authenticated()
                         .requestMatchers("/admin/**").hasRole("ADMIN"))
                 .formLogin((form) -> form
                         .loginPage("/login")
