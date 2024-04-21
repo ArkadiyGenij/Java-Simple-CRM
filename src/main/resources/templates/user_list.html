@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Пользователи</title>
-    <link rel='stylesheet' href='/webjars/bootstrap/5.3.3/css/bootstrap.min.css'>
+    <link rel='stylesheet' th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <link rel='stylesheet' th:href="@{/webjars/font-awesome/6.5.2/css/all.min.css}">
+    <script th:src="@{webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
 </head>
 <body>
 <div class="container-fluid">
@@ -51,7 +53,12 @@
                 <td th:text="${user.email}"></td>
                 <td th:text="${user.username}"></td>
                 <td>
-                    <a class="btn btn-primary" th:href="@{/admin/user/update(id=${user.id})}">Редактирование</a>
+                    <a class="btn btn-primary" th:href="@{/admin/user/update(id=${user.id})}">
+                        <i class="fas fa-pen"></i>
+                    </a>
+                    <a class="btn btn-danger" th:href="@{/admin/user/delete(id=${user.id})}">
+                        <i class="fas fa-trash"></i>
+                    </a>
                 </td>
             </tr>
             </tbody>

@@ -70,4 +70,9 @@ public class UserServiceImpl implements UserService {
         updateUser.setPhone(user.getPhone());
         userRepo.save(updateUser);
     }
+
+    @Override
+    public void deleteUser(Long id) {
+        this.userRepo.deleteById(id);
+    }
 }

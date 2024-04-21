@@ -33,4 +33,10 @@ public class UserController {
         userService.updateUser(user);
         return "redirect:/admin/user/list";
     }
+
+    @GetMapping("/delete")
+    String deleteUser(@RequestParam(value = "id",required = false) Long id) {
+        userService.deleteUser(id);
+        return "redirect:/admin/user/list";
+    }
 }
