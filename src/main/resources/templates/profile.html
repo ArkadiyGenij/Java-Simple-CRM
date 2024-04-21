@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет</title>
+    <link rel='stylesheet' href='/webjars/bootstrap/5.3.3/css/bootstrap.min.css'>
+</head>
+<body>
+    <div class="container-fluid">
+        <p th:text="${user.username}"></p>
+        <p th:text="${user.name}"></p>
+        <p th:text="${user.surname}"></p>
+        <p th:each="role : ${user.roles}" th:text="${role.getName()}"></p>
+    </div>
+</body>
+</html>

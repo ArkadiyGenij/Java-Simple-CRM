@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel='stylesheet' href='/webjars/bootstrap/5.3.3/css/bootstrap.min.css'>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+
+        </div>
+        <div class="col">
+            <form method="post" th:action="@{/registration}">
+                <div class="container-fluid">
+                    <label class="form-label w-100" for="name"> Имя:
+                        <input class="form-control" type="text" placeholder="Введите имя" name="name" id="name"/>
+                    </label>
+                </div>
+                <div class="container-fluid">
+                    <label class="form-label w-100" for="surname"> Фамилия:
+                        <input class="form-control" type="text" placeholder="Введите фамилию" name="surname"
+                               id="surname"/>
+                    </label>
+                </div>
+                <div class="container-fluid">
+                    <label class="form-label w-100" for="lastname"> Отчество:
+                        <input class="form-control" type="text" placeholder="Введите отчество" name="lastname"
+                               id="lastname"/>
+                    </label>
+                </div>
+                <div class="container-fluid">
+                    <label class="form-label w-100" for="username_reg"> Логин:
+                        <input class="form-control" type="text" placeholder="Введите логин" name="username"
+                               id="username_reg"/>
+                    </label>
+                </div>
+                <div class="container-fluid">
+                    <label class="form-label w-100" for="password_reg"> Пароль:
+                        <input class="form-control" type="password" placeholder="Введите пароль" name="password"
+                               id="password_reg"/>
+                    </label>
+                </div>
+                <div class="container-fluid">
+                    <label class="form-label w-100" for="email"> Почта:
+                        <input class="form-control" type="email" placeholder="Введите почту" name="email"
+                               id="email"/>
+                    </label>
+                </div>
+                <div class="container-fluid">
+                    <label class="form-label w-100" for="phone"> Номер телефона:
+                        <input class="form-control" type="text" placeholder="Введите номер телефона" name="phone"
+                               id="phone"/>
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="onBack()">Вернуться</button>
+                    <span class="m-2"></span>
+                    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
