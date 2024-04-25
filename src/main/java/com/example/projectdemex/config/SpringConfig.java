@@ -42,7 +42,7 @@ public class SpringConfig {
                         .tokenValiditySeconds(86400)
                 )
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/login")
+                        .logoutSuccessUrl("/login?logout=true")
                         .logoutUrl("/logout")
                         .permitAll()
                         .deleteCookies("JSESSIONID")
