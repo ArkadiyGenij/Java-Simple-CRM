@@ -27,7 +27,8 @@ public class SpringConfig {
                                 "/webjars/**",
                                 "/img/**",
                                 "/uploads/**",
-                                "/sw.js")
+                                "/sw.js",
+                                "/js/**")
                         .permitAll()
                         .requestMatchers("/profile", "/updatePhoto")
                         .authenticated()
