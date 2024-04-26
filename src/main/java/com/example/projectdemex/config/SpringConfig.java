@@ -2,13 +2,14 @@ package com.example.projectdemex.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.thymeleaf.extras.springsecurity6.dialect.SpringSecurityDialect;
 
 @Configuration
+@EnableMethodSecurity
 public class SpringConfig {
 
     @Bean
@@ -18,22 +19,23 @@ public class SpringConfig {
 
 
     @Bean
-    public SpringSecurityDialect securityDialect(){
-        return new SpringSecurityDialect();
-    }
-
-
-    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers(
                                 "/registration",
-                                "/webjars/**").permitAll()
+                                "/webjars/**",
+                                "/img/**",
+                                "/uploads/**",
+                                "/sw.js",
+                                "/js/**")
+                        .permitAll()
+                        .requestMatchers("/profile", "/updatePhoto")
+                        .authenticated()
                         .requestMatchers("/admin/**").hasRole("ADMIN"))
                 .formLogin((form) -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/admin/user/list")
+                        .defaultSuccessUrl("/profile")
                         .permitAll()
                 )
                 .rememberMe(rememberMe -> rememberMe
@@ -41,7 +43,7 @@ public class SpringConfig {
                         .tokenValiditySeconds(86400)
                 )
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/login")
+                        .logoutSuccessUrl("/login?logout=true")
                         .logoutUrl("/logout")
                         .permitAll()
                         .deleteCookies("JSESSIONID")

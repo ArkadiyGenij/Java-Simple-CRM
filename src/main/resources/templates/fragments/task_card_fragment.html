@@ -1,0 +1,20 @@
+<div class="card h-100" th:fragment="taskCard(title, description, status, createdAt)">
+    <div class="card-header">
+        <p class="fw-bolder card-text" th:text="${title}"></p>
+    </div>
+    <div class="card-body">
+        <p class="card-text" th:text="${description}"></p>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col">
+                <p class="card-text fw-bold">Статус:</p>
+                <p class="card-text" th:text="${status}"></p>
+            </div>
+            <div class="col">
+                <p class="card-text fw-bold">Время добавления:</p>
+                <p class="card-text" th:text="${createdAt}"></p>
+            </div>
+        </div>
+    </div>
+</div>
