@@ -27,7 +27,8 @@ public class SpringConfig {
                                 "/webjars/**",
                                 "/img/**",
                                 "/uploads/**",
-                                "/sw.js")
+                                "/sw.js",
+                                "/js/**")
                         .permitAll()
                         .requestMatchers("/profile", "/updatePhoto")
                         .authenticated()
@@ -42,7 +43,7 @@ public class SpringConfig {
                         .tokenValiditySeconds(86400)
                 )
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/login")
+                        .logoutSuccessUrl("/login?logout=true")
                         .logoutUrl("/logout")
                         .permitAll()
                         .deleteCookies("JSESSIONID")

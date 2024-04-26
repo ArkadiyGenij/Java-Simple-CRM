@@ -3,64 +3,54 @@
 <div th:replace="~{fragments/head_fragment :: head(pageTitle='Регистрация')}"></div>
 <body>
 <div class="container-fluid">
-    <div class="row">
-        <div class="col">
-
-        </div>
-        <div class="col">
-            <form method="post" th:action="@{/registration}">
-                <div class="container-fluid">
-                    <label class="form-label w-100" for="name"> Имя:
-                        <input class="form-control" type="text" placeholder="Введите имя" name="name" id="name"/>
-                    </label>
+    <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6 col-sm-8 col-10 mt-5">
+            <form method="post" th:action="@{/registration}" class="p-4 shadow-lg rounded">
+                <h2 class="text-center mb-4">Регистрация</h2>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Имя:</label>
+                    <input class="form-control" type="text" placeholder="Введите имя" name="name" id="name"/>
                 </div>
-                <div class="container-fluid">
-                    <label class="form-label w-100" for="surname"> Фамилия:
-                        <input class="form-control" type="text" placeholder="Введите фамилию" name="surname"
-                               id="surname"/>
-                    </label>
+                <div class="mb-3">
+                    <label for="surname" class="form-label">Фамилия:</label>
+                    <input class="form-control" type="text" placeholder="Введите фамилию" name="surname" id="surname"/>
                 </div>
-                <div class="container-fluid">
-                    <label class="form-label w-100" for="lastname"> Отчество:
-                        <input class="form-control" type="text" placeholder="Введите отчество" name="lastname"
-                               id="lastname"/>
-                    </label>
+                <div class="mb-3">
+                    <label for="lastname" class="form-label">Отчество:</label>
+                    <input class="form-control" type="text" placeholder="Введите отчество" name="lastname"
+                           id="lastname"/>
                 </div>
-                <div class="container-fluid">
-                    <label class="form-label w-100" for="username_reg"> Логин:
-                        <input class="form-control" type="text" placeholder="Введите логин" name="username"
-                               id="username_reg"/>
-                    </label>
+                <div class="mb-3">
+                    <label for="username_reg" class="form-label">Логин:</label>
+                    <input class="form-control" type="text" placeholder="Введите логин" name="username"
+                           id="username_reg"/>
                 </div>
-                <div class="container-fluid">
-                    <label class="form-label w-100" for="password_reg"> Пароль:
-                        <input class="form-control" type="password" placeholder="Введите пароль" name="password"
-                               id="password_reg"/>
-                    </label>
+                <div class="mb-3">
+                    <label for="password_reg" class="form-label">Пароль:</label>
+                    <input class="form-control" type="password" placeholder="Введите пароль" name="password"
+                           id="password_reg"/>
                 </div>
-                <div class="container-fluid">
-                    <label class="form-label w-100" for="email"> Почта:
-                        <input class="form-control" type="email" placeholder="Введите почту" name="email"
-                               id="email"/>
-                    </label>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Почта:</label>
+                    <input class="form-control" type="email" placeholder="Введите почту" name="email" id="email"/>
                 </div>
-                <div class="container-fluid">
-                    <label class="form-label w-100" for="phone"> Номер телефона:
-                        <input class="form-control" type="text" placeholder="Введите номер телефона" name="phone"
-                               id="phone"/>
-                    </label>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Номер телефона:</label>
+                    <input class="form-control" type="text" placeholder="Введите номер телефона" name="phone"
+                           id="phone"/>
                 </div>
-                <div class="modal-footer">
+                <div class="d-grid gap-2">
                     <button type="button" class="btn btn-secondary" onclick="onBack()">Вернуться</button>
-                    <span class="m-2"></span>
                     <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
                 </div>
             </form>
         </div>
-        <div class="col">
-
-        </div>
     </div>
 </div>
+<script>
+    function onBack(){
+        window.history.back();
+    }
+</script>
 </body>
 </html>
