@@ -24,4 +24,8 @@ public interface UserService {
     void deleteUser(Long id);
 
     void updateProfilePhoto(MultipartFile file, UserDetails user) throws IOException;
+
+    boolean isUsernameAvailable(String username);
+
+    boolean isEmailAvailable(String email);
 }
