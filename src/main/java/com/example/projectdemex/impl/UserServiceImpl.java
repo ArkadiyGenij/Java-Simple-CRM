@@ -4,6 +4,7 @@ import com.example.projectdemex.dto.UserDto;
 import com.example.projectdemex.model.Role;
 import com.example.projectdemex.model.User;
 import com.example.projectdemex.repo.UserRepo;
+import com.example.projectdemex.service.MailSender;
 import com.example.projectdemex.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.util.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,6 +27,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
+    private final MailSender mailSender;
 
     @Value("${upload.path}")
     private String uploadPath;
@@ -51,7 +54,16 @@ public class UserServiceImpl implements UserService {
         user.setEmail(userDto.getEmail());
         user.setPhone(userDto.getPhone());
         user.setRoles(Collections.singleton(Role.USER));
+        user.setActivationCode(UUID.randomUUID().toString());
         userRepo.save(user);
+
+        if (!StringUtils.isEmpty(user.getEmail())) {
+            String message = String.format("Здравствуйте, %s!\n" +
+                            "Для активации вашего аккаунта просим перейти вас по ссылке: http://localhost:8080/activate/%s",
+                    user.getName(), user.getActivationCode());
+
+            mailSender.send(user.getEmail(), "Активация аккаунта", message);
+        }
     }
 
     @Override
@@ -68,7 +80,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(User user) {
         User updateUser = userRepo.findById(user.getId()).orElse(null);
-        if (updateUser == null){
+        if (updateUser == null) {
             throw new IllegalArgumentException("Пользователь не найден!");
         }
         updateUser.setName(user.getName());
@@ -87,9 +99,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateProfilePhoto(MultipartFile file, UserDetails userDetails) throws IOException {
-        if (file != null && !file.isEmpty()){
+        if (file != null && !file.isEmpty()) {
             File uploadDir = new File(uploadPath);
-            if (!uploadDir.exists()){
+            if (!uploadDir.exists()) {
                 boolean isSuccessful = uploadDir.mkdir();
                 if (!isSuccessful) {
                     throw new IOException("Ошибка при создании директории");
