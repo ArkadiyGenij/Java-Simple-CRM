@@ -12,8 +12,7 @@ public interface UserRepo extends JpaRepository<User, Long> {
     User findByUsername(String username);
 
     @Query(value = "select u from User u where lower(u.name) like concat('%', lower(:search), '%') " +
-            "or lower(u.surname) like concat('%', lower(:search), '%') " +
-            "or lower(u.lastname) like concat('%', lower(:search), '%')")
+            "or lower(u.surname) like concat('%', lower(:search), '%') ")
     List<User> findByName(@Param("search") String search);
 
     boolean existsByUsername(String username);

@@ -20,13 +20,6 @@
                     <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="text-danger">Ошибка имени</span>
                 </div>
                 <div class="mb-3">
-                    <label for="lastname" class="form-label">Отчество:</label>
-                    <input class="form-control" type="text" placeholder="Введите отчество" th:field="*{lastname}"
-                           id="lastname" aria-describedby="lastnameHelp"/>
-                    <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class="text-danger">Ошибка имени</span>
-                    <div id="lastnameHelp" class="form-text">Примеры отчества: Иванович, Петрович, Huanitovich</div>
-                </div>
-                <div class="mb-3">
                     <label for="username_reg" class="form-label">Логин:</label>
                     <input class="form-control" type="text" placeholder="Введите логин" th:field="*{username}"
                            id="username_reg" aria-describedby="usernameHelp"/>

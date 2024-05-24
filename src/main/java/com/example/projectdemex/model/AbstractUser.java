@@ -14,5 +14,4 @@ import lombok.Setter;
 public abstract class AbstractUser {
     private String name;
     private String surname;
-    private String lastname;
 }
