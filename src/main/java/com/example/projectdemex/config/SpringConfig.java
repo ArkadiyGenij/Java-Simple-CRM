@@ -23,12 +23,8 @@ public class SpringConfig {
         http
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers(
-                                "/registration",
-                                "/webjars/**",
-                                "/img/**",
-                                "/uploads/**",
-                                "/sw.js",
-                                "/js/**")
+                                "/registration", "/webjars/**", "/img/**",
+                                "/uploads/**", "/sw.js", "/js/**", "/css/**", "/activate/**")
                         .permitAll()
                         .requestMatchers("/profile", "/updatePhoto")
                         .authenticated()

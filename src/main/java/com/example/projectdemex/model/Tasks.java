@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 @Entity
 @Getter
@@ -27,4 +29,9 @@ public class Tasks {
     @Enumerated(EnumType.STRING)
     private TaskPriority priority;
     private LocalDateTime createdAt;
+
+    public String getFormattedCreatedAt() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy'г' HH:mm", new Locale("ru"));
+        return createdAt.format(formatter);
+    }
 }
