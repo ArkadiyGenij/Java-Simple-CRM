@@ -138,5 +138,10 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+    @Override
+    public boolean isActivationCodeAvailable(String code) {
+        return userRepo.existsByActivationCode(code);
+    }
+
 
 }

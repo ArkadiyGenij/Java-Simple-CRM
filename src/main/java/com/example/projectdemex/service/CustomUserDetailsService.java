@@ -3,6 +3,7 @@ package com.example.projectdemex.service;
 import com.example.projectdemex.impl.UserServiceImpl;
 import com.example.projectdemex.model.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
