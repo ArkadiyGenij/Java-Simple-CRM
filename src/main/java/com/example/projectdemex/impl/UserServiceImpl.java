@@ -128,4 +128,17 @@ public class UserServiceImpl implements UserService {
     public boolean isEmailAvailable(String email) {
         return userRepo.existsByEmail(email);
     }
+
+    @Override
+    public boolean activateUser(String code) {
+        User user = userRepo.findByActivationCode(code);
+        if (user == null){
+            return false;
+        }
+        user.setActivationCode(null);
+        userRepo.save(user);
+        return true;
+    }
+
+
 }

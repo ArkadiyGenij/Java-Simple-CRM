@@ -28,4 +28,6 @@ public interface UserService {
     boolean isUsernameAvailable(String username);
 
     boolean isEmailAvailable(String email);
+
+    boolean activateUser(String code);
 }

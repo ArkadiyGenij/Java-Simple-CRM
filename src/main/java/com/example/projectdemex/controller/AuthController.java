@@ -5,9 +5,11 @@ import com.example.projectdemex.impl.UserServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -41,6 +43,20 @@ public class AuthController {
 
         userServiceImpl.save(userDto);
         return "redirect:/login";
+    }
+
+    @GetMapping("/activate/{code}")
+    String activate(@PathVariable("code") String code, Model model) {
+
+        boolean isActivated = userServiceImpl.activateUser(code);
+        if (isActivated){
+            model.addAttribute("message", "Активация прошла успешно!");
+        }
+        else {
+            model.addAttribute("message", "Активация не удалась!");
+        }
+
+        return "login";
     }
 
 }
