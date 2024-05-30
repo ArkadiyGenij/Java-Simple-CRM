@@ -30,6 +30,4 @@ public interface UserService {
     boolean isEmailAvailable(String email);
 
     boolean activateUser(String code);
-
-    boolean isActivationCodeAvailable(String code);
 }

@@ -137,11 +137,4 @@ public class UserServiceImpl implements UserService {
         userRepo.save(user);
         return true;
     }
-
-    @Override
-    public boolean isActivationCodeAvailable(String code) {
-        return userRepo.existsByActivationCode(code);
-    }
-
-
 }
