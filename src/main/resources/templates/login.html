@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <div th:replace="~{fragments/head_fragment :: head(pageTitle='Авторизация')}"></div>
 <body>
 <div class="container-fluid">
     <div class="row justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="col-lg-4 col-md-6 col-sm-8 col-10">
-            <form method="post" th:action="@{/login}" class="p-4 shadow-lg rounded" id="loginForm">
+            <form method="post" th:action="@{login}" class="p-4 shadow-lg rounded" id="loginForm">
                 <h2 class="text-center mb-4">Авторизация</h2>
                 <div th:if="${param.error}" class="alert alert-danger" role="alert" id="errorAlert">
                     Неверное имя пользователя или пароль!
@@ -13,9 +15,11 @@
                 <div th:if="${param.logout}" class="alert alert-success" role="alert" id="logoutAlert">
                     Вы успешно вышли из системы.
                 </div>
-                <div th:if="${messageSuccess}" th:text="${messageSuccess}" class="alert alert-success" role="alert" id="successMessageAlert">
+                <div th:if="${messageSuccess}" th:text="${messageSuccess}" class="alert alert-success" role="alert"
+                     id="successMessageAlert">
                 </div>
-                <div th:if="${messageDanger}" th:text="${messageDanger}" class="alert alert-danger" role="alert" id="dangerMessageAlert">
+                <div th:if="${messageDanger}" th:text="${messageDanger}" class="alert alert-danger" role="alert"
+                     id="dangerMessageAlert">
                 </div>
                 <div class="mb-3">
                     <label for="username" class="form-label">Логин:</label>
@@ -39,6 +43,6 @@
         </div>
     </div>
 </div>
-<th:block th:replace="~{/fragments/script_fragment :: scripts}"></th:block>
+<th:block th:replace="~{fragments/script_fragment :: scripts}"></th:block>
 </body>
 </html>
