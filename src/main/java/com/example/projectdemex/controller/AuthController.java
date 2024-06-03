@@ -24,24 +24,25 @@ public class AuthController {
     }
 
     @PostMapping("/registration")
-    String saveUser(@Valid @ModelAttribute("userDto") UserDto userDto, BindingResult bindingResult) {
+    String saveUser(@Valid @ModelAttribute("userDto") UserDto userDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "registration";
         }
 
         if (userServiceImpl.isUsernameAvailable(userDto.getUsername())) {
-            System.out.println("Пользователь есть!");
             bindingResult.rejectValue("username","error.username", "Имя пользователя уже занято!");
             return "registration";
         }
 
         if (userServiceImpl.isEmailAvailable(userDto.getEmail())) {
-            System.out.println("Чих пых!");
             bindingResult.rejectValue("email", "error.email","Почта уже занята!");
             return "registration";
         }
 
         userServiceImpl.save(userDto);
+
+        model.addAttribute("messageSuccess", "Для завершения регистрации, активируйте аккаунт по ссылке отправленной вам на электронную почту!");
+
         return "redirect:/login";
     }
 
@@ -49,14 +50,14 @@ public class AuthController {
     String activate(@PathVariable("code") String code, Model model) {
 
         boolean isActivated = userServiceImpl.activateUser(code);
+
         if (isActivated){
-            model.addAttribute("message", "Активация прошла успешно!");
+            model.addAttribute("messageSuccess", "Активация прошла успешно!");
         }
         else {
-            model.addAttribute("message", "Активация не удалась!");
+            model.addAttribute("messageDanger", "Активация не удалась!");
         }
 
         return "login";
     }
-
 }

@@ -13,6 +13,10 @@
                 <div th:if="${param.logout}" class="alert alert-success" role="alert" id="logoutAlert">
                     Вы успешно вышли из системы.
                 </div>
+                <div th:if="${messageSuccess}" th:text="${messageSuccess}" class="alert alert-success" role="alert" id="successMessageAlert">
+                </div>
+                <div th:if="${messageDanger}" th:text="${messageDanger}" class="alert alert-danger" role="alert" id="dangerMessageAlert">
+                </div>
                 <div class="mb-3">
                     <label for="username" class="form-label">Логин:</label>
                     <input class="form-control" type="text" placeholder="Введите логин" name="username" id="username"
