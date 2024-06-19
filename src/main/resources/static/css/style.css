@@ -5,3 +5,15 @@
 .zoom:hover {
     transform: scale(1.05);
 }
+
+.hidden {
+    visibility: hidden;
+}
+
+.background-main {
+    background-image: url('../img/background.jpg');
+}
+
+.table {
+    background-color: transparent;
+}

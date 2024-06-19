@@ -1,15 +1,12 @@
 package com.example.projectdemex.impl;
 
 import com.example.projectdemex.dto.TaskDto;
-import com.example.projectdemex.model.TaskPriority;
-import com.example.projectdemex.model.TaskStatus;
-import com.example.projectdemex.model.Tasks;
+import com.example.projectdemex.model.*;
 import com.example.projectdemex.repo.TaskRepo;
 import com.example.projectdemex.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -31,8 +28,7 @@ public class TaskServiceImpl implements TaskService {
         task.setStatus(TaskStatus.OPEN);
         task.setPriority(TaskPriority.LOW);
         task.setDeadline(taskDto.getDeadline());
-        task.setAssignedTo(taskDto.getUser());
-        task.setCreatedAt(LocalDateTime.now());
+        task.setUser(taskDto.getUser());
         taskRepo.save(task);
     }
 }

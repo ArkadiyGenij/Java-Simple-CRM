@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <div th:replace="~{fragments/head_fragment :: head(pageTitle='Список задач')}"></div>
-<body>
+<body class="background-main">
 <div class="container-fluid">
     <div class="container">
         <br>
@@ -28,7 +28,6 @@
             </div>
         </div>
     </div>
-    <hr>
     <div class="container">
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col" th:each="task: ${tasks}">
@@ -36,7 +35,7 @@
                 title=${task.title},
                 description=${task.description},
                 status=${task.status.getName()},
-                createdAt=${task.getFormattedCreatedAt()})}"></div>
+                createdAt=${task.createdAt})}"></div>
             </div>
         </div>
     </div>
@@ -47,7 +46,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <form th:action="@{/admin/tasks/addTask}" th:object="${task}" method="post">
+        <form th:action="@{/admin/tasks/addTask}" th:object="${taskDto}" method="post">
             <h2 class="text-center">Регистрация задачи</h2>
             <div>
                 <label class="form-label" for="title">Название: </label>

@@ -1,14 +1,15 @@
 package com.example.projectdemex.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 @Entity
 @Getter
@@ -24,14 +25,12 @@ public class Tasks {
     private LocalDateTime deadline;
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
-    @ManyToOne
-    private User assignedTo;
     @Enumerated(EnumType.STRING)
     private TaskPriority priority;
+    @CreatedDate
+    @DateTimeFormat(pattern = "d MMMM yyyy'г' HH:mm")
     private LocalDateTime createdAt;
-
-    public String getFormattedCreatedAt() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy'г' HH:mm", new Locale("ru"));
-        return createdAt.format(formatter);
-    }
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User assignedUser;
 }

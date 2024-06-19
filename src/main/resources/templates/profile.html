@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <div th:replace="~{fragments/head_fragment :: head(pageTitle='Личный кабинет')}"></div>
-<body>
+<body class="background-main">
 <div class="container-fluid">
     <div class="container">
         <br>
@@ -37,15 +37,15 @@
                 </div>
             </div>
             <div class="col justify-content-start align-items-center">
-                <h5>Ваше имя:</h5>
-                <p class="fw-normal fs-6" th:text="${user.surname + ' ' + user.name}"></p>
-                <h5>Имя пользователя:</h5>
-                <p class="fw-normal fs-6" th:text="${user.username}"></p>
-                <h5>Почта:</h5>
-                <p class="fw-normal fs-6" th:text="${user.email}"></p>
-                <h5>Номер телефона:</h5>
-                <p class="fw-normal fs-6" th:text="${user.phone}"></p>
-                <p class="text-muted fw-light fst-italic fs-6">Ошиблись при вводе данных? Для изменения данных
+                <h5 class="text-white">Ваше имя:</h5>
+                <p class="fw-normal fs-6 text-white" th:text="${user.surname + ' ' + user.name}"></p>
+                <h5 class="text-white">Имя пользователя:</h5>
+                <p class="fw-normal fs-6 text-white" th:text="${user.username}"></p>
+                <h5 class="text-white">Почта:</h5>
+                <p class="fw-normal fs-6 text-white" th:text="${user.email}"></p>
+                <h5 class="text-white">Номер телефона:</h5>
+                <p class="fw-normal fs-6 text-white" th:text="${user.phone}"></p>
+                <p class="fw-light fst-italic fs-6 text-white">Ошиблись при вводе данных? Для изменения данных
                     обратитесь к администратору</p>
             </div>
         </div>

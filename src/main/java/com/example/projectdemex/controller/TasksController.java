@@ -18,17 +18,16 @@ public class TasksController {
     private final UserService userService;
 
     @GetMapping("/admin/tasks/list")
-    String findAllTasks(Model model) {
+    String findAllTasks(@ModelAttribute("taskDto") TaskDto taskDto, Model model) {
         model.addAttribute("users", userService.findAllUser());
         model.addAttribute("tasks", taskService.findAllTask());
-        model.addAttribute("task", new TaskDto());
         return "tasks_list";
     }
 
 
     // Не открывается страница с задачами после добавления этого метода
     @PostMapping("/admin/tasks/addTask")
-    String addNewTask(@ModelAttribute TaskDto taskDto){
+    String addNewTask(@ModelAttribute("taskDto") TaskDto taskDto) {
         taskService.save(taskDto);
         return "redirect:/admin/tasks/list";
     }
